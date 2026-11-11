@@ -1,0 +1,14 @@
+README.md
+.git
+node_modules
+.env*
+tests
+db
+scripts/migrate-neon.mjs
+scripts/configure-neon.mjs
+.agents
+.claude
+skills-lock.json
+
+scripts/migrate-skill-trees.mjs
+SKILL-ARCHITECTURE.md

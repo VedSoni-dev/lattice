@@ -1,0 +1,11 @@
+import {App} from '@modelcontextprotocol/ext-apps';
+import {formatSkill} from '../lib/skill-format.mjs';
+const app=new App({name:'Lattice approval',version:'1.0.0'});
+let skill,nonce,reviewUrl;
+const status=document.querySelector('#status'),approve=document.querySelector('#approve');
+app.ontoolresult=result=>{const data=result.structuredContent;if(!data?.skill)return;skill=data.skill;nonce=result._meta?.approval_nonce;reviewUrl=data.review_url;document.querySelector('#content').hidden=false;document.querySelector('#title').textContent=skill.title;document.querySelector('#author').textContent='Method by '+skill.author_name;document.querySelector('#method').textContent=formatSkill(skill);const team=document.querySelector('#team');team.replaceChildren(new Option('Just me — save to my account',''));for(const t of data.teams||[])team.append(new Option('Share with '+t.name,t.id));approve.disabled=!nonce;status.textContent=nonce?'Review the method, then choose where to save it.':'Open this draft in Lattice to approve it.';};
+approve.onclick=async()=>{if(!skill||!nonce)return;approve.disabled=true;status.textContent='Saving your approved method…';try{const team=document.querySelector('#team').value;const result=await app.callServerTool({name:'approve_skill',arguments:{id:skill.id,approval_nonce:nonce,...(team?{team_id:team}:{})}});if(result.isError)throw new Error(result.content?.find(c=>c.type==='text')?.text||'Approval failed');nonce=null;status.textContent=team?'Saved to your account and shared with your selected team.':'Saved to your account. Your skill is private.';approve.textContent='✓ Skill saved';document.querySelector('#team').disabled=true;document.querySelector('#later').hidden=true;await app.updateModelContext({content:[{type:'text',text:'The user approved the Lattice skill '+skill.id+(team?' and shared it with team '+team:'. It remains personal.')} ]});}catch(error){status.textContent=error.message;approve.disabled=false;}};
+document.querySelector('#later').onclick=()=>{status.textContent='Nothing shared. The private draft is waiting in your Lattice account.';};
+document.querySelector('#review').onclick=async()=>{if(reviewUrl)await app.openLink({url:reviewUrl});};
+app.connect().catch(()=>{status.textContent='This client cannot display the approval card. Use the review link returned by Lattice.';});
+

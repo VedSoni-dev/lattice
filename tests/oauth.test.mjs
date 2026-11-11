@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {randomBytes} from 'node:crypto';
+import {registerClient,readClient,validateAuthorization,allowedRedirect} from '../lib/oauth.mjs';
+process.env.OAUTH_CLIENT_SECRET=randomBytes(32).toString('hex');
+test('OAuth registration rejects unsafe callbacks and altered clients',()=>{for(const url of ['javascript:alert(1)','http://evil.test/callback','https://good.test/#token','https://user:pass@good.test/callback'])assert.equal(allowedRedirect(url),false);assert.equal(allowedRedirect('http://127.0.0.1:12345/callback'),true);const client=registerClient({client_name:'Codex',redirect_uris:['http://127.0.0.1:12345/callback']});assert.equal(readClient(client.client_id).name,'Codex');assert.throws(()=>readClient(client.client_id+'x'),/Invalid/);assert.throws(()=>registerClient({redirect_uris:['http://evil.test']}),/HTTPS/);});
+test('OAuth authorization binds registered redirects, resource and S256',()=>{const client=registerClient({redirect_uris:['http://127.0.0.1:54321/callback']});const request={client_id:client.client_id,redirect_uri:'http://127.0.0.1:54321/callback',resource:'https://lattice.test/mcp',response_type:'code',code_challenge_method:'S256',code_challenge:'a'.repeat(43)};assert.ok(validateAuthorization(request,request.resource));for(const changed of [{redirect_uri:'https://evil.test'},{resource:'https://evil.test/mcp'},{code_challenge_method:'plain'},{code_challenge:''},{scope:'admin'}])assert.throws(()=>validateAuthorization({...request,...changed},request.resource));});

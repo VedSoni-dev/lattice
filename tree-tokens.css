@@ -1,0 +1,2 @@
+/* Lattice's existing green palette, with a warm accent for selected paths. */
+:root{--atlas-bg:#111b19;--atlas-panel:#17231f;--atlas-ink:#e6ecdf;--atlas-muted:#a2b3a4;--atlas-rule:#34443d;--atlas-line:#64756c;--atlas-guide:#263a31;--atlas-gold:#ead29b;--atlas-gold-dim:#817348;--atlas-node:#15211e;--atlas-clear:transparent;--atlas-focus:#d5e9b4;--atlas-font:'DM Sans',Arial,sans-serif;--atlas-mono:var(--mono);--atlas-shadow:#090f0b;--atlas-space-sm:12px;--atlas-space-md:20px;--atlas-space-lg:28px}

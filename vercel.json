@@ -1,0 +1,80 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/mcp.js": {
+      "includeFiles": "dist/approval-card.html"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/install",
+      "destination": "/install.html"
+    },
+    {
+      "source": "/demo",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/app",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/signup",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/join",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/authorize",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
+      "source": "/.well-known/oauth-protected-resource",
+      "destination": "/api/oauth?action=resource"
+    },
+    {
+      "source": "/.well-known/oauth-protected-resource/mcp",
+      "destination": "/api/oauth?action=resource"
+    },
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "destination": "/api/oauth?action=metadata"
+    },
+    {
+      "source": "/oauth/register",
+      "destination": "/api/oauth?action=register"
+    },
+    {
+      "source": "/oauth/token",
+      "destination": "/api/oauth?action=token"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

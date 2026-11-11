@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="description" content="Lattice is open-source, team-wide skills for coding agents. Approve a method once, and every teammate's agent can borrow it and build on it.">
+  <title>Lattice: skills that build on skills</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0c0e'/%3E%3Cg fill='%23eceae2'%3E%3Crect x='2' y='2' width='3' height='3'/%3E%3Crect x='6.5' y='2' width='3' height='3'/%3E%3Crect x='2' y='6.5' width='3' height='3'/%3E%3Crect x='6.5' y='6.5' width='3' height='3'/%3E%3Crect x='11' y='6.5' width='3' height='3'/%3E%3Crect x='2' y='11' width='3' height='3'/%3E%3Crect x='6.5' y='11' width='3' height='3'/%3E%3Crect x='11' y='11' width='3' height='3'/%3E%3C/g%3E%3Crect x='11' y='2' width='3' height='3' fill='%233e63ff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Lattice home">
+      <svg class="mark" viewBox="0 0 16 16" aria-hidden="true"><g fill="currentColor"><rect x="2" y="2" width="3" height="3"/><rect x="6.5" y="2" width="3" height="3"/><rect x="2" y="6.5" width="3" height="3"/><rect x="6.5" y="6.5" width="3" height="3"/><rect x="11" y="6.5" width="3" height="3"/><rect x="2" y="11" width="3" height="3"/><rect x="6.5" y="11" width="3" height="3"/><rect x="11" y="11" width="3" height="3"/></g><rect class="mark-accent" x="11" y="2" width="3" height="3"/></svg>
+      lattice
+    </a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#build">Build on skills</a>
+      <a href="#control">Control</a>
+      <a href="#open-source">Open source</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-link" href="/demo?view=connect">See the flow</a>
+      <a class="nav-cta" href="/demo">Open demo <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <canvas class="dither hero-canvas" data-scene="lattice" aria-hidden="true"></canvas>
+    <img class="hero-fallback" src="media/lattice.gif" alt="" aria-hidden="true">
+    <div class="hud hud-tl" aria-hidden="true"><span>LATTICE/0.1</span><span data-hud="cells">— × — CELLS</span></div>
+    <div class="hud hud-tr" aria-hidden="true"><span data-hud="pointer">X 0.00 Y 0.00</span><span>BAYER 8×8 · 3 INKS</span></div>
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pip"></span>Open source · MCP · for teams and their agents</p>
+      <h1>Skills that<br>build on skills.</h1>
+      <p class="lede">Lattice turns the methods your team approves into shared skills. Each skill can pin the ones beneath it, so every agent on the team starts from everyone's best work.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/demo">Try the demo <span aria-hidden="true">↗</span></a>
+        <a class="btn ghost" href="https://github.com/VedSoni-dev/lattice"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Star on GitHub</a>
+      </div>
+      <p class="hero-note">Works in Codex, Claude Code, Cursor and any MCP client. <a href="/install">Connect your agent →</a></p>
+    </div>
+    <div class="hud hud-bl" aria-hidden="true"><span>CAPTURE → APPROVE → PIN → BORROW</span></div>
+    <div class="hud hud-br" aria-hidden="true"><span>SCROLL</span><span class="blink">▼</span></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>capture ▪ approve ▪ pin ▪ borrow ▪ build on ▪ </span><span>capture ▪ approve ▪ pin ▪ borrow ▪ build on ▪ </span><span>capture ▪ approve ▪ pin ▪ borrow ▪ build on ▪ </span><span>capture ▪ approve ▪ pin ▪ borrow ▪ build on ▪ </span></div></div>
+
+  <main id="main">
+    <section class="section" id="how">
+      <div class="section-head">
+        <p class="label">01 / How it compounds</p>
+        <h2>Know-how that stacks<br>instead of scattering.</h2>
+        <p class="section-sub">Today your team's best methods live in one person's head or one chat log. Lattice captures them where the work happens, keeps them pinned, and hands them to every agent on the team.</p>
+      </div>
+
+      <div class="reels">
+        <article class="reel">
+          <div class="screen" data-reel>
+            <canvas class="dither" data-scene="ripple" aria-hidden="true"></canvas>
+            <div class="chrome"><span class="rec"><i></i>REC</span><span>capture.live</span><span data-timecode>00:00:00</span></div>
+            <div class="overlay capture" aria-hidden="true">
+              <div class="bubble you"><b>Maya</b> Let's get the settings page right.</div>
+              <div class="bubble agent"><b>Agent</b> Done. Is this the ideal way to do it?</div>
+              <div class="approve"><span class="yes">✓ Save as a skill</span><span>Not yet</span></div>
+              <div class="toast">Draft saved · private · v1</div>
+            </div>
+          </div>
+          <div class="reel-meta"><span class="num">01</span><h3>Capture with a yes</h3></div>
+          <p>When you finish good work, your agent asks if that was the ideal method. Say yes and it writes the method up as a private draft. Nothing is shared until you approve it.</p>
+        </article>
+
+        <article class="reel">
+          <div class="screen" data-reel data-sharpen>
+            <canvas class="dither" data-scene="video" data-src="compose-video" aria-hidden="true"></canvas>
+            <video id="compose-video" class="source-video" src="media/compose.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
+            <div class="chrome"><span class="rec"><i></i>PLAY</span><span>compose.mp4</span><span data-timecode>00:00:00</span></div>
+            <div class="scrub" aria-hidden="true"><i data-scrub></i></div>
+            <span class="hover-hint" aria-hidden="true">Hover to resolve</span>
+          </div>
+          <div class="reel-meta"><span class="num">02</span><h3>Compose and pin</h3></div>
+          <p>Skills reference other approved skills at exact versions. "Ship a release" can pin "Run release checks" at v4. Updating a child never silently changes the parent.</p>
+        </article>
+
+        <article class="reel">
+          <div class="screen" data-reel>
+            <canvas class="dither" data-scene="flow" aria-hidden="true"></canvas>
+            <div class="chrome"><span class="rec"><i></i>REC</span><span>borrow.live</span><span data-timecode>00:00:00</span></div>
+            <div class="overlay borrow" aria-hidden="true">
+              <span class="term t1">alex › borrow_skill <em>ship-release@1</em></span>
+              <span class="term t2">sam › borrow_skill <em>run-checks@4</em></span>
+              <span class="term t3">you › inspect_skill <em>ship-release</em></span>
+            </div>
+          </div>
+          <div class="reel-meta"><span class="num">03</span><h3>Borrow across the team</h3></div>
+          <p>Teammates' agents search summaries first, then load only the methods they need, one node at a time. Every load records which version was used.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="dband" data-from="#0b0c0e" data-to="#eceae2" aria-hidden="true"></div>
+
+    <section class="section light" id="build">
+      <div class="section-head">
+        <p class="label">02 / Build on what's approved</p>
+        <h2>Pick the skills underneath.<br>Get a better one on top.</h2>
+        <p class="section-sub">Try it. Your teammates already approved these. Add them as children of a new skill and watch the definition your agent would propose.</p>
+      </div>
+
+      <div class="builder">
+        <div class="builder-stack">
+          <canvas class="dither" data-scene="stack" data-theme="light" aria-hidden="true"></canvas>
+          <div class="stack-label"><span data-stack-count>0</span> pinned · max 12</div>
+        </div>
+
+        <div class="builder-ui">
+          <div class="parent">
+            <div><span class="kicker">New skill · draft</span><h3>Ship a release</h3></div>
+            <span class="badge" data-status>Draft v1</span>
+          </div>
+          <p class="pick-label" id="pick-label">Approved by your team. Click to pin:</p>
+          <div class="chips" role="group" aria-labelledby="pick-label" data-chips></div>
+          <pre class="definition" aria-label="Skill definition preview"><code data-definition></code></pre>
+          <div class="builder-actions">
+            <button class="btn primary small" type="button" data-approve disabled>Approve v1</button>
+            <button class="btn ghost small dark" type="button" data-reset>Reset</button>
+            <span class="builder-msg" role="status" data-msg></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="dband" data-from="#eceae2" data-to="#0b0c0e" aria-hidden="true"></div>
+
+    <section class="section" id="loading">
+      <div class="split">
+        <div>
+          <p class="label">03 / A lattice, not a pile</p>
+          <h2>Agents load one node at a time.</h2>
+          <p class="section-sub">A shared child can belong to many parents. Agents walk the graph progressively, so context stays small and every step is a version someone actually approved.</p>
+          <ol class="calls">
+            <li><code><b>search_skills</b>("ship a release")</code><span>Titles, outcomes, authors, child counts. No methods.</span></li>
+            <li><code><b>inspect_skill</b>(ship-release, v1)</code><span>One node and its children's summaries.</span></li>
+            <li><code><b>borrow_skill</b>(run-checks, v4, parent: ship-release@1)</code><span>One method with its checks, pinned and logged.</span></li>
+          </ol>
+        </div>
+        <figure class="gif-frame">
+          <div class="chrome"><span class="rec"><i></i>GIF</span><span>lattice.gif</span><span>96 FR · 3 INKS</span></div>
+          <img src="media/lattice.gif" alt="A dithered animation flying through a 3D lattice of nodes, with some nodes pulsing blue." loading="lazy" width="480" height="320">
+          <figcaption>Rendered by <code>scripts/make-media.mjs</code>, ordered-dithered to three inks.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="control">
+      <div class="section-head">
+        <p class="label">04 / You stay in control</p>
+        <h2>Nothing ships without a yes.</h2>
+      </div>
+      <div class="controls">
+        <article><span class="glyph" aria-hidden="true">▣</span><h3>Author approval</h3><p>Agents propose private drafts. Only the author approves or shares. Agent tools never approve on their own.</p></article>
+        <article><span class="glyph" aria-hidden="true">▤</span><h3>Frozen versions</h3><p>Approval freezes a version. Editing makes a new draft, and parents keep the exact child versions they pinned.</p></article>
+        <article><span class="glyph" aria-hidden="true">▥</span><h3>Access on every read</h3><p>Visibility and team membership are checked each time. Leave a team and its skills stop loading, even when pinned.</p></article>
+        <article><span class="glyph" aria-hidden="true">▦</span><h3>No transcripts</h3><p>The agent writes a method from its task context. Lattice doesn't record sessions or run a background model.</p></article>
+        <article><span class="glyph" aria-hidden="true">▧</span><h3>Revocable connections</h3><p>OAuth with PKCE, rotating refresh tokens, and personal access tokens you can revoke any time.</p></article>
+        <article><span class="glyph" aria-hidden="true">▨</span><h3>Teams and invites</h3><p>Owner and member roles, one-use invite links with expiry, optional email restriction, member removal.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="open-source">
+      <div class="oss">
+        <div>
+          <p class="label">05 / Open source</p>
+          <h2>MIT licensed.<br>Host your own.</h2>
+          <p class="section-sub">Node 20, Postgres on Neon, deployed to Vercel. The demo runs entirely in your browser with sample data, no account needed.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="https://github.com/VedSoni-dev/lattice">View the repo <span aria-hidden="true">↗</span></a>
+            <a class="btn ghost" href="https://github.com/VedSoni-dev/lattice/blob/main/SKILL-ARCHITECTURE.md">Read the skill contract</a>
+          </div>
+        </div>
+        <div class="terminal" role="region" aria-label="Setup commands">
+          <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span>~/lattice</span><button class="copy" type="button" data-copy>Copy</button></div>
+<pre><code data-copy-src><span class="c"># clone and check</span>
+git clone https://github.com/VedSoni-dev/lattice
+cd lattice && npm ci
+npm run build && npm test
+
+<span class="c"># configure Neon + OAuth, then ship</span>
+cp .env.example .env.local
+vercel --prod</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <span>Lattice · team-wide skills that build on each other</span>
+      <nav aria-label="Footer"><a href="https://github.com/VedSoni-dev/lattice">GitHub</a><a href="/demo">Demo</a><a href="/install">Install</a><a href="https://github.com/VedSoni-dev/lattice/blob/main/LICENSE">MIT License</a></nav>
+    </div>
+    <div class="wordmark">
+      <canvas class="dither" data-scene="wordmark" aria-hidden="true"></canvas>
+      <span class="sr-only">lattice</span>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> Lattice contributors</span><span>DITHERED IN REAL TIME · WEBGL</span></div>
+  </footer>
+</body>
+</html>
