@@ -6,6 +6,8 @@
 
 Works with Codex, Claude Code, Cursor, and any client that speaks remote MCP (Streamable HTTP). MIT licensed.
 
+**Live:** https://lattice-team-ai.vercel.app · **Demo (no account):** https://lattice-team-ai.vercel.app/demo
+
 <p align="center"><img src="media/compose.gif" alt="A dithered skill tree growing: foundation skills appear, composed skills connect on top" width="480"></p>
 
 ## How it works
