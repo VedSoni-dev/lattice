@@ -120,3 +120,11 @@ function smooth(lum,acc,w,h){
   await encode('media/lattice.gif',W,H,FPS,frames,gifArgs(2));
   console.log('lattice: '+N+' frames');
 }
+
+// ---- dither-band.png: a tileable ordered-dither fade (transparent -> accent), used by the workspace UI.
+{
+  const W=64,H=24,px=Buffer.alloc(W*H*4);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const t=1-y/(H-1),e=t*t*(3-2*t),on=e*.85>bayer(x,y),o=(y*W+x)*4;if(on){px[o]=ACCENT[0];px[o+1]=ACCENT[1];px[o+2]=ACCENT[2];px[o+3]=255;}}
+  await new Promise((ok,fail)=>{const p=spawn('ffmpeg',['-y','-loglevel','error','-f','rawvideo','-pix_fmt','rgba','-s',`${W}x${H}`,'-i','-','-frames:v','1','-pix_fmt','rgba','media/dither-band.png'],{stdio:['pipe','inherit','inherit']});p.on('error',fail);p.on('close',c=>c?fail(new Error('band')):ok());p.stdin.end(px);});
+  console.log('dither-band.png');
+}
